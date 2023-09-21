@@ -146,11 +146,13 @@
   <ItemGroup>
     <ClCompile Include="Core\Engine.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Systems\RenderingSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Components.h" />
     <ClInclude Include="Core\ECS.h" />
     <ClInclude Include="Core\Engine.h" />
+    <ClInclude Include="Systems\RenderingSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,11 +1,13 @@
 #pragma once
 #include <iostream>
 #include "sfml/graphics.hpp"
+#include "ECS.h"
 
 class Engine
 {
 public: 
 	sf::RenderWindow* window;
+	ECS::World* world;
 
 private:
 	bool bQuit;
@@ -20,6 +22,7 @@ public:
 	Engine& operator= (Engine& copy) = delete; //Hide assignment operator (Bans = sign)
 	void Start(sf::RenderWindow* window);
 	static Engine& GetInstance();
+	void AddSystem(ECS::EntitySystem* newSys);
 
 private:
 	void Update();
