@@ -21,14 +21,10 @@ void Engine::Start(sf::RenderWindow* window)
 	while (window->isOpen()) {
 		Update();
 	}
-
 }
 
 Engine& Engine::GetInstance()
 {
 	static Engine instance;
-
-
-
 	return instance;
 }

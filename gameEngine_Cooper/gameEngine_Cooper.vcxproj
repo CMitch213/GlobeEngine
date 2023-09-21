@@ -148,6 +148,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Components.h" />
+    <ClInclude Include="Core\ECS.h" />
     <ClInclude Include="Core\Engine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -29,5 +29,11 @@
     <ClInclude Include="Core\Engine.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Core\ECS.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Components.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
