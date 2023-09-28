@@ -2,6 +2,8 @@
 #include <iostream>
 #include "sfml/graphics.hpp"
 #include "ECS.h"
+#include "Components.h"
+#include "../Systems/RenderingSystem.h"
 
 class Engine
 {
