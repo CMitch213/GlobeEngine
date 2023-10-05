@@ -21,13 +21,13 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{baef4cd3-5e9c-448f-8755-d0cfac2346ea}</ProjectGuid>
-    <RootNamespace>gameEngineCooper</RootNamespace>
+    <ProjectGuid>{40570468-2e53-4b47-b8f3-5d579d031aa8}</ProjectGuid>
+    <RootNamespace>TestingGame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -72,17 +72,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Packages\SFML-2.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Packages\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)$(ProjectName)\lib</OutDir>
+    <IncludePath>$(SolutionDir)Packages\SFML-2.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)gameEngine_Cooper\lib;$(SolutionDir)Packages\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\Packages\SFML-2.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\Packages\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,7 +94,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;gameEngine_Cooper.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,17 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Engine.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Systems\AnimationsSystem.cpp" />
-    <ClCompile Include="Systems\RenderingSystem.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Core\Components.h" />
-    <ClInclude Include="Core\ECS.h" />
-    <ClInclude Include="Core\Engine.h" />
-    <ClInclude Include="Systems\AnimationsSystem.h" />
-    <ClInclude Include="Systems\RenderingSystem.h" />
+    <ClCompile Include="GameMain.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
