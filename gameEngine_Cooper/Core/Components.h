@@ -51,3 +51,16 @@ public:
 	}
 };
 ECS_DEFINE_TYPE(Animator);
+
+struct InputController {
+
+public:
+	ECS_DECLARE_TYPE;
+	bool bInputActive, wKey, aKey, sKey, dKey;
+
+	InputController() : bInputActive(true), wKey(false), aKey(false), sKey(false), dKey(false) {
+
+	}
+
+};
+ECS_DEFINE_TYPE(InputController);
