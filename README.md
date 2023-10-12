@@ -1,5 +1,6 @@
 # Globe Engine
 ### A Lightweight C++ Game Engine (with an example game)
+![GlobeEngineLogo](https://github.com/CMitch213/GlobeEngine/assets/110313496/94f15e00-f9a8-4d01-81b9-fe1b15b8d438)
 
 ## Description
 This is a game engine that I made in a computer programming class. 
