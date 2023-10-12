@@ -19,5 +19,5 @@ void InputSystem::GetKeyEvents(ECS::World* world)
 			input->sKey = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 			input->dKey = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 		}
-		)
+		);
 }

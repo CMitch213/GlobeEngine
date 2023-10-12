@@ -33,6 +33,9 @@
     <ClCompile Include="Systems\InputSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Systems\MovementSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine.h">
@@ -51,6 +54,9 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Systems\InputSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\MovementSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>

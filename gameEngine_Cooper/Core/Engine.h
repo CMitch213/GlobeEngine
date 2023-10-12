@@ -5,6 +5,8 @@
 #include "Components.h"
 #include "../Systems/RenderingSystem.h"
 #include "../Systems/AnimationsSystem.h"
+#include "../Systems/InputSystem.h"
+#include "../Systems/MovementSystem.h"
 
 class Engine
 {

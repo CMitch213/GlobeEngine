@@ -7,12 +7,30 @@ struct Transform
 
 public:
 	ECS_DECLARE_TYPE;
-	float xPos;
-	float yPos;
-	float rotation;
+	float xPos, yPos;
+	float rotationAngle;
+	float rotationSpeed;
+	float xSpeed, ySpeed;
+	float xSpeedMod, ySpeedMod;
 
-	Transform(float newX, float newY): xPos(newX), yPos(newY), rotation(0.0f) {
-		
+	bool bCollide;
+
+	Transform(float newX, float newY, float xSpeed = 0.0f, float ySpeed = 0.0f, float rotationAngle = 0.0f, float rotationSpeed = 0.0f): 
+		xPos(newX), yPos(newY), 
+		xSpeed(xPos), ySpeed(yPos),
+		xSpeedMod(xSpeed), ySpeedMod(ySpeed),
+		rotationAngle(rotationAngle), rotationSpeed(rotationSpeed),
+		bCollide(false){
+		//Start of constructor
+
+	}
+
+	void Move(){
+		if (bCollide == false)
+		{
+			this->xPos += xSpeed;
+			this->yPos += ySpeed;
+		}
 	}
 };
 ECS_DEFINE_TYPE(Transform);
@@ -22,7 +40,7 @@ public:
 	ECS_DECLARE_TYPE;
 	sf::Sprite picture;
 	std::string texturePath;
-	int width, height;
+	float width, height;
 
 	Sprite2D(std::string filePath): texturePath(filePath) {
 

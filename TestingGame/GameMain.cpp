@@ -1,5 +1,7 @@
 #include "sfml/graphics.hpp"
 #include "../gameEngine_Cooper/Core/Engine.h"
+#include "../gameEngine_Cooper/Systems/InputSystem.h"
+#include "../gameEngine_Cooper/Systems/MovementSystem.h"
 
 int main() {
 
@@ -19,6 +21,8 @@ int main() {
 	//Add systems to the engine
 	gameEngine.AddSystem(new RenderingSystem());
 	gameEngine.AddSystem(new AnimationsSystem());
+	gameEngine.AddSystem(new InputSystem(&window));
+	gameEngine.AddSystem(new MovementSystem());
 
 	//Create Entities
 	background = gameEngine.world->create();
@@ -28,10 +32,11 @@ int main() {
 	//Assign Componets to Entities
 	background->assign<Transform>(0, 0);
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
-	tux->assign<Transform>(50, 50);
+	tux->assign<Transform>(50, 50, 0.3f, 0.3f, 0.0f, 0.2f);
 	tux->assign<Sprite2D>("../Debug/Pics/tux_from_linux.png");
 	tux->assign<Animator>(56, 72, 3, 9, 3000.0f);
 	tux->get<Animator>()->currentRow = 0;
+	tux->assign<InputController>();
 	stickFigure->assign<Transform>(100, 100);
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 4, 1, 2000.0f);
