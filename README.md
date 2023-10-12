@@ -28,4 +28,4 @@ This was the first game engine that I have ever made.
 If you enjoy this or find it helpful that is awesome! I am mainly using this to develop skills and get better at computer programming.
 
 ## TL:DR
-I'm new so don't judge this is just a site with cool features.
+Just a fun little game engine I made in a course with some additions by me.
