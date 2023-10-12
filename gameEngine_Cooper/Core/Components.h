@@ -82,3 +82,22 @@ public:
 
 };
 ECS_DEFINE_TYPE(InputController);
+
+struct BoxCollider {
+
+public:
+	ECS_DECLARE_TYPE;
+	float leftEdge, rightEdge, topEdge, bottomEdge;
+
+	BoxCollider() : leftEdge(0.0f), rightEdge(0.0f), topEdge(0.0f), bottomEdge(0.0f) {
+
+	}
+
+	void Update(float x, float y, float width, float height) {
+		this->leftEdge = x;
+		this->rightEdge = x + width;
+		this->topEdge = y;
+		this->bottomEdge = y + height;
+	}
+};
+ECS_DEFINE_TYPE(BoxCollider);
