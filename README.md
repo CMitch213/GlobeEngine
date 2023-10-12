@@ -1,5 +1,5 @@
 # Globe Engine
-### A Lightweight C++ Game Engine (with a example game)
+### A Lightweight C++ Game Engine (with an example game)
 
 ## Description
 This is a game engine that I made in a computer programming class. 
