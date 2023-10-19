@@ -17,7 +17,7 @@ or email me at **coopjmitchell@gmail.com**
 
 ## KNOWN ISSUES
 ##### Known
-None Yet
+Entities Auto Moving.
 ##### Working on
 
 ##### Fixed
