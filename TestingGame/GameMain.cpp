@@ -23,6 +23,7 @@ int main() {
 	gameEngine.AddSystem(new AnimationsSystem());
 	gameEngine.AddSystem(new InputSystem(&window));
 	gameEngine.AddSystem(new MovementSystem());
+	gameEngine.AddSystem(new PhysicsSystem());
 
 	//Create Entities
 	background = gameEngine.world->create();
@@ -37,14 +38,26 @@ int main() {
 	tux->assign<Animator>(56, 72, 3, 9, 3000.0f);
 	tux->get<Animator>()->currentRow = 0;
 	tux->assign<InputController>();
+	tux->assign<BoxCollider>();
 	stickFigure->assign<Transform>(100, 100);
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 4, 1, 2000.0f);
+	stickFigure->assign<BoxCollider>();
 
 	//Check Which Entity They Are
 	std::cout << "EntityID: " << background->getEntityId() << std::endl;
 	std::cout << "EntityID: " << tux->getEntityId() << std::endl;
 	std::cout << "EntityID: " << stickFigure->getEntityId() << std::endl;
+
+	/*
+		bool gameIsRunning = true;
+
+	while (gameIsRunning) {
+		std::cout << "StickFigure X: " << stickFigure->get<Transform>()->xPos << std::endl;
+	}
+	*/
+
+	
 
 
 	////Create and assign 250 enitities to the world
