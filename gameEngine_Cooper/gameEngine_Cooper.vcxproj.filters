@@ -19,6 +19,12 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{26c3822c-cab0-4778-a2f2-f287907f097e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{4148f057-4769-4686-a282-70b657e0b4c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{d0f56e54-80a5-45da-bf8e-14b9f10508b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Engine.cpp">
@@ -38,6 +44,15 @@
     </ClCompile>
     <ClCompile Include="Systems\PhysicsSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\States.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\ButtonMap.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\Button.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +79,15 @@
     </ClInclude>
     <ClInclude Include="Systems\PhysicsSystem.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\States.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\ButtonMap.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI\Button.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

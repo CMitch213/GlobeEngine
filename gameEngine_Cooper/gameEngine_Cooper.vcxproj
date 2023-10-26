@@ -146,21 +146,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Engine.cpp" />
+    <ClCompile Include="GUI\Button.cpp" />
+    <ClCompile Include="GUI\ButtonMap.cpp" />
     <ClCompile Include="Systems\AnimationsSystem.cpp" />
     <ClCompile Include="Systems\InputSystem.cpp" />
     <ClCompile Include="Systems\MovementSystem.cpp" />
     <ClCompile Include="Systems\PhysicsSystem.cpp" />
     <ClCompile Include="Systems\RenderingSystem.cpp" />
+    <ClCompile Include="Utils\States.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Components.h" />
     <ClInclude Include="Core\ECS.h" />
     <ClInclude Include="Core\Engine.h" />
+    <ClInclude Include="GUI\Button.h" />
+    <ClInclude Include="GUI\ButtonMap.h" />
     <ClInclude Include="Systems\AnimationsSystem.h" />
     <ClInclude Include="Systems\InputSystem.h" />
     <ClInclude Include="Systems\MovementSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RenderingSystem.h" />
+    <ClInclude Include="Utils\States.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
