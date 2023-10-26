@@ -17,11 +17,11 @@ or email me at **coopjmitchell@gmail.com**
 
 ## KNOWN ISSUES
 ##### Known
-Entities Auto Moving.
+
 ##### Working on
 
 ##### Fixed
-
+Entities Auto Moving.
 
 ## About-Me
 I am a highschool back-end dev and game dev, this was made in a programming course that I took.
