@@ -15,7 +15,7 @@ int main() {
 
 	//Create entities
 	ECS::Entity* background;
-	ECS::Entity* tux;
+	ECS::Entity* soldier;
 	ECS::Entity* stickFigure;
 
 	//Add systems to the engine
@@ -27,18 +27,18 @@ int main() {
 
 	//Create Entities
 	background = gameEngine.world->create();
-	tux = gameEngine.world->create();
+	soldier = gameEngine.world->create();
 	stickFigure = gameEngine.world->create();
 
 	//Assign Componets to Entities
 	background->assign<Transform>(0, 0);
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
-	tux->assign<Transform>(50, 50, 0.3f, 0.3f, 0.0f, 0.2f);
-	tux->assign<Sprite2D>("../Debug/Pics/tux_from_linux.png");
-	tux->assign<Animator>(56, 72, 3, 9, 3000.0f);
-	tux->get<Animator>()->currentRow = 0;
-	tux->assign<InputController>();
-	tux->assign<BoxCollider>();
+	soldier->assign<Transform>(50, 50, 0.03f, 0.03f, 0.0f, 0.1f);
+	soldier->assign<Sprite2D>("../Debug/Pics/Soldier.png");
+	soldier->assign<Animator>(64, 64, 1, 1, 3000.0f);
+	soldier->get<Animator>()->currentRow = 0;
+	soldier->assign<InputController>();
+	soldier->assign<BoxCollider>();
 	stickFigure->assign<Transform>(100, 100);
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 4, 1, 2000.0f);
@@ -46,7 +46,7 @@ int main() {
 
 	//Check Which Entity They Are
 	std::cout << "EntityID: " << background->getEntityId() << std::endl;
-	std::cout << "EntityID: " << tux->getEntityId() << std::endl;
+	std::cout << "EntityID: " << soldier->getEntityId() << std::endl;
 	std::cout << "EntityID: " << stickFigure->getEntityId() << std::endl;
 
 	/*

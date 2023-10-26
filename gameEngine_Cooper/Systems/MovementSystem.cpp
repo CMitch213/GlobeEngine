@@ -11,20 +11,24 @@ void MovementSystem::tick(ECS::World* world, float deltaTime)
 			ECS::ComponentHandle<Sprite2D> sprite
 			) -> void {
 				//Centre anchorpoint to sprite
-				// Uncomment if not using spritesheet to set anchor point to centre
-				//sprite->picture.setOrigin(sf::Vector2f(sprite->width / 2, sprite->height / 2));
+				// comment if using spritesheet to set anchor point to centre
+				sprite->picture.setOrigin(sf::Vector2f(sprite->width / 2, sprite->height / 2));
 				// 
 				//ECS::ComponentHandle<InputController> input = entity->get<InputController>();
 				input= entity->get<InputController>();
 				if (input->bInputActive==true) {
-					if (input->wKey) {
-						transform->xSpeed = static_cast<float>(sin(static_cast<double>(sprite->picture.getRotation()) + 90.0 / 180.0 * M_PI) * static_cast<double>(transform->xSpeedMod));
-						transform->ySpeed = static_cast<float>(-cos(static_cast<double>(sprite->picture.getRotation()) + 90.0 / 180.0 * M_PI) * static_cast<double>(transform->ySpeedMod));
+					if (input->wKey == true)
+					{
+						transform->xSpeed = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->xSpeedMod;
+						transform->ySpeed = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->ySpeedMod;
+
 						transform->Move();
 					}
-					else if (input->sKey) {
-						transform->xSpeed = static_cast<float>(-sin(static_cast<double>(sprite->picture.getRotation()) + 90.0 / 180.0 * M_PI) * static_cast<double>(transform->xSpeedMod));
-						transform->ySpeed = static_cast<float>(cos(static_cast<double>(sprite->picture.getRotation()) + 90.0 / 180.0 * M_PI) * static_cast<double>(transform->ySpeedMod));
+					else if (input->sKey == true)
+					{
+						transform->xSpeed = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->xSpeedMod;
+						transform->ySpeed = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->ySpeedMod;
+
 						transform->Move();
 					}
 					else {

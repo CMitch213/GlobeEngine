@@ -17,7 +17,7 @@ public:
 
 	Transform(float newX, float newY, float xSpeed = 0.0f, float ySpeed = 0.0f, float rotationAngle = 0.0f, float rotationSpeed = 0.0f): 
 		xPos(newX), yPos(newY), 
-		xSpeed(xPos), ySpeed(yPos),
+		xSpeed(xSpeed), ySpeed(ySpeed),
 		xSpeedMod(xSpeed), ySpeedMod(ySpeed),
 		rotationAngle(rotationAngle), rotationSpeed(rotationSpeed),
 		bCollide(false){
