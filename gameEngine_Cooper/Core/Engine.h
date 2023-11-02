@@ -9,11 +9,14 @@
 #include "../Systems/MovementSystem.h"
 #include"../Systems/PhysicsSystem.h"
 
+class PauseMenu;
+
 class Engine
 {
 public: 
-	sf::RenderWindow* window;
-	ECS::World* world;
+	sf::RenderWindow* window = nullptr;
+	ECS::World* world = nullptr;
+	PauseMenu* pauseMenu = nullptr;
 
 private:
 	bool bQuit;
@@ -31,7 +34,7 @@ public:
 	void AddSystem(ECS::EntitySystem* newSys);
 
 private:
-	void Update();
-
+	void Update()const;
+	void Pause()const;
 };
 

@@ -7,7 +7,7 @@ bool States::GetPausedState()
     return bPaused;
 }
 
-void States::SetPausedStated(bool bPaused)
+void States::SetPausedState(bool bPaused)
 {
     States::bPaused = bPaused;
 }

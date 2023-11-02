@@ -6,6 +6,6 @@ private:
 
 public:
 	static bool GetPausedState();
-	static void SetPausedStated(bool bPaused);
+	static void SetPausedState(bool bPaused);
 };
 

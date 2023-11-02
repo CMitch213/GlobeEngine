@@ -45,5 +45,25 @@ void Button::Render(sf::RenderWindow* window, float deltaTime)const
 //TODO
 void Button::CheckPressed(sf::Event event)
 {
+    if (bHighlighted == false) {
+        return;
+    }
 
+    if (event.type == sf::Event::MouseButtonPressed) {
+        bPressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+
+        if (!bPressed) {
+            bClicked = false;
+        }
+        if (bPressed) {
+            if (event.type == sf::Event::MouseButtonReleased) {
+                bReleased = true;
+                bClicked = true;
+            }
+            else {
+                bReleased = false;
+                bClicked = false;
+            }
+        }
+    }
 }
