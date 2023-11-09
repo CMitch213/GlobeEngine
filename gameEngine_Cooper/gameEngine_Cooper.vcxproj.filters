@@ -60,6 +60,9 @@
     <ClCompile Include="GUI\MainCamera.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\Tile.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="GUI\MainCamera.h">
       <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\Tile.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

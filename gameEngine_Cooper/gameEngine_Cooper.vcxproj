@@ -156,6 +156,7 @@
     <ClCompile Include="Systems\PhysicsSystem.cpp" />
     <ClCompile Include="Systems\RenderingSystem.cpp" />
     <ClCompile Include="Utils\States.cpp" />
+    <ClCompile Include="Utils\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Components.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RenderingSystem.h" />
     <ClInclude Include="Utils\States.h" />
+    <ClInclude Include="Utils\Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

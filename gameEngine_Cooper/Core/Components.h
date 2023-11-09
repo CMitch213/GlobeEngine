@@ -1,6 +1,7 @@
 #pragma once
 #include "ECS.h"
 #include "Engine.h"
+#include "../Utils/Tile.h"
 
 struct Transform
 {
@@ -101,3 +102,66 @@ public:
 	}
 };
 ECS_DEFINE_TYPE(BoxCollider);
+
+struct TileMap {
+
+public:
+	ECS_DECLARE_TYPE;
+	float gridSizeF;
+	uint32_t gridSizeU;
+	uint32_t layers;
+	sf::Vector2u maxSize;
+	sf::RectangleShape collisionBox;
+	std::vector<std::vector<std::vector<Tile*>>> map;
+	TileMap() : gridSizeF(50.0f), 
+		/*Making gridSizeU = gridSizeF*/ gridSizeU(static_cast<uint32_t>(gridSizeF)), 
+		layers(1),
+		maxSize(sf::Vector2u(20, 20))
+	{
+		map.resize(maxSize.x);
+		for (size_t x = 0; x < maxSize.x; x++)
+		{
+			//Push_Back = add
+			map.push_back(std::vector<std::vector<Tile*>>());
+
+			for (size_t y = 0; y < maxSize.y; y++)
+			{
+				map.at(x).resize(maxSize.y);
+				map.at(x).push_back(std::vector<Tile*>());
+
+				for (size_t z = 0; z < layers; z++)
+				{
+					map.at(x).at(y).resize(layers);
+					map.at(x).at(y).push_back(nullptr);
+				}
+			}
+		}
+
+		collisionBox.setSize(sf::Vector2f(gridSizeF, gridSizeF));
+		collisionBox.setFillColor(sf::Color(150, 255, 69, 50));
+		collisionBox.setOutlineColor(sf::Color::Green);
+		collisionBox.setOutlineThickness(-0.5f);
+	}
+
+	~TileMap() {
+		Clear();
+	}
+
+	void Clear() {
+		for (size_t x = 0; x < maxSize.x; x++)
+		{
+			for (size_t y = 0; y < maxSize.y; y++) 
+			{
+				for (size_t z = 0; z < layers; z++) 
+				{
+					delete map.at(x).at(y).at(z);
+				}
+
+				map.at(x).at(y).clear();
+			}
+			map.at(x).clear();
+		}
+		map.clear();
+	}
+};
+ECS_DEFINE_TYPE(TileMap);
