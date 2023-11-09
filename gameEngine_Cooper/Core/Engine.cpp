@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "../GUI/PauseMenu.h"
 #include "../Utils/States.h"
+#include "../GUI/MainCamera.h"
 
 void Engine::Update()const
 {
@@ -16,6 +17,7 @@ void Engine::Update()const
 	}
 
 	world->tick(10.0f);
+	mainCamera->Update(world, 10.0f, window);
 	if (States::GetPausedState()) {
 		Pause();
 	}
@@ -26,6 +28,9 @@ void Engine::Start(sf::RenderWindow* window)
 	this->bQuit = false;
 	this->window = window;
 
+	mainCamera = new MainCamera(sf::Vector2f(
+		static_cast<float>(window->getSize().x / 2), 
+		static_cast<float>(window->getSize().y / 2)));
 	pauseMenu = new PauseMenu(window);
 
 	//Run the program as long as the window is open
@@ -48,5 +53,5 @@ void Engine::AddSystem(ECS::EntitySystem* newSys)
 
 void Engine::Pause()const
 {
-	//pauseMenu->Render(window, 10.0f, this->mainCamera->cameraView.getCenter());
+	pauseMenu->Render(window, 10.0f, this->mainCamera->cameraView.getCenter());
 }

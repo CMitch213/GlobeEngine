@@ -10,6 +10,7 @@
 #include"../Systems/PhysicsSystem.h"
 
 class PauseMenu;
+class MainCamera;
 
 class Engine
 {
@@ -17,6 +18,7 @@ public:
 	sf::RenderWindow* window = nullptr;
 	ECS::World* world = nullptr;
 	PauseMenu* pauseMenu = nullptr;
+	MainCamera* mainCamera = nullptr;
 
 private:
 	bool bQuit;

@@ -148,6 +148,7 @@
     <ClCompile Include="Core\Engine.cpp" />
     <ClCompile Include="GUI\Button.cpp" />
     <ClCompile Include="GUI\ButtonMap.cpp" />
+    <ClCompile Include="GUI\MainCamera.cpp" />
     <ClCompile Include="GUI\PauseMenu.cpp" />
     <ClCompile Include="Systems\AnimationsSystem.cpp" />
     <ClCompile Include="Systems\InputSystem.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Core\Engine.h" />
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\ButtonMap.h" />
+    <ClInclude Include="GUI\MainCamera.h" />
     <ClInclude Include="GUI\PauseMenu.h" />
     <ClInclude Include="Systems\AnimationsSystem.h" />
     <ClInclude Include="Systems\InputSystem.h" />
