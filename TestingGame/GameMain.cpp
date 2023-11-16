@@ -24,6 +24,7 @@ int main() {
 	gameEngine.AddSystem(new InputSystem(&window));
 	gameEngine.AddSystem(new MovementSystem());
 	gameEngine.AddSystem(new PhysicsSystem());
+	gameEngine.AddSystem(new TileMapSystem());
 
 	//Create Entities
 	background = gameEngine.world->create();
@@ -33,6 +34,7 @@ int main() {
 	//Assign Componets to Entities
 	background->assign<Transform>(0, 0);
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
+	background->assign<TileMap>();
 	soldier->assign<Transform>(50, 50, 0.03f, 0.03f, 0.0f, 0.1f);
 	soldier->assign<Sprite2D>("../Debug/Pics/Soldier.png");
 	soldier->assign<Animator>(64, 64, 1, 1, 3000.0f);
@@ -48,17 +50,6 @@ int main() {
 	std::cout << "EntityID: " << background->getEntityId() << std::endl;
 	std::cout << "EntityID: " << soldier->getEntityId() << std::endl;
 	std::cout << "EntityID: " << stickFigure->getEntityId() << std::endl;
-
-	/*
-		bool gameIsRunning = true;
-
-	while (gameIsRunning) {
-		std::cout << "StickFigure X: " << stickFigure->get<Transform>()->xPos << std::endl;
-	}
-	*/
-
-	
-
 
 	////Create and assign 250 enitities to the world
 	//for (int x = 0; x < 25; x++) {

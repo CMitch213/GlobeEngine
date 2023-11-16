@@ -63,6 +63,9 @@
     <ClCompile Include="Utils\Tile.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Systems\TileMapSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine.h">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Utils\Tile.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\TileMapSystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

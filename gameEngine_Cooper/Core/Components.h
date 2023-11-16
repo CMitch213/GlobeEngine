@@ -2,6 +2,7 @@
 #include "ECS.h"
 #include "Engine.h"
 #include "../Utils/Tile.h"
+#include <fstream>
 
 struct Transform
 {
@@ -162,6 +163,84 @@ public:
 			map.at(x).clear();
 		}
 		map.clear();
+	}
+
+	void AddTile(const int32_t x, const int32_t y, const int32_t z, bool bHasCollision) {
+		//Make sure tiles are being placed on the grid
+		if (x < maxSize.x && x >= 0 && 
+			y < maxSize.y && x >= 0 &&
+			z < layers && z >= 0) 
+		{
+			//Check if a tile is not already in use	
+			if (map.at(x).at(y).at(z) == nullptr) {
+				//Create A Tile
+				map.at(x).at(y).at(z) = new Tile(static_cast<float>(x), static_cast<float>(y), gridSizeF, bHasCollision);
+				std::cout << "Added Tile" << std::endl;
+			}
+		}
+	}
+
+	void SaveTileMap(const std::string& fileName)const {
+		std::ofstream saveFile;
+		saveFile.open(fileName);
+		if (saveFile.is_open()) {
+			//Gather Level Info
+			saveFile << maxSize.x << " " << maxSize.y << "\n"
+				<< gridSizeF << "\n"
+				<< layers << "\n";
+			//Gets all the tiles that are placed by the user
+			for (size_t x = 0; x < maxSize.x; x++) {
+				for (size_t y = 0; y < maxSize.y; y++){
+					for (size_t z = 0; z < layers; z++)
+					{
+						//Saves Level Info to a Text File
+						saveFile << x << " " << y << " " << z << " " << map.at(x).at(y).at(z)->ToString() << "\n";
+					}
+				}
+			}
+		}
+		else {
+			//Cant Save File
+			std::cerr << "Error 404: TileMap Could Not Be Saved To File " << fileName << std::endl;
+		}
+
+		saveFile.close();
+	}
+
+	void LoadTileMap(const std::string& fileName) {
+		std::ifstream loadFile;
+		loadFile.open(fileName);
+		if (loadFile.is_open()) {
+			bool bColliding = false;
+			//Reads the position of all tiles previously saved from a text file
+			loadFile >> maxSize.x >> maxSize.y >> gridSizeF >> layers;
+			//Remove unsaved tiles
+			Clear();
+			map.resize(maxSize.x, std::vector<std::vector<Tile* >>());
+			//Get all the tiles from save file
+			for (size_t x = 0; x < maxSize.x; x++) {
+				for (size_t y = 0; y < maxSize.y; y++) {
+					map.at(x).resize(maxSize.y, std::vector<Tile* >());
+					for (size_t z = 0; z < layers; z++) {
+						map.at(x).at(y).resize(layers, nullptr);
+					}
+				}
+			}
+			//While reading the tile data from text file.
+			while (loadFile >> maxSize.x >> maxSize.y >> layers >> bColliding) {
+				std::cout << maxSize.x << ", "
+					<< maxSize.y << ", "
+					<< layers << ", "
+					<< std::endl;
+				//Restore / Adds Tiles from saved text file
+				map.at(maxSize.x).at(maxSize.y).at(layers) = new Tile(static_cast<float>(maxSize.x), static_cast<float>(maxSize.y), gridSizeF, bColliding);
+			}
+		}
+		else {
+			//Cant Load File
+			std::cerr << "Error 404: TileMap Could Not Be Load File " << fileName << std::endl;
+		}
+		loadFile.close();
 	}
 };
 ECS_DEFINE_TYPE(TileMap);
