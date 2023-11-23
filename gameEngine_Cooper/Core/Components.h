@@ -167,9 +167,7 @@ public:
 
 	void AddTile(const int32_t x, const int32_t y, const int32_t z, bool bHasCollision) {
 		//Make sure tiles are being placed on the grid
-		if (x < maxSize.x && x >= 0 && 
-			y < maxSize.y && x >= 0 &&
-			z < layers && z >= 0) 
+		if (x >= 0 && y >= 0 && z >= 0) 
 		{
 			//Check if a tile is not already in use	
 			if (map.at(x).at(y).at(z) == nullptr) {
@@ -193,8 +191,11 @@ public:
 				for (size_t y = 0; y < maxSize.y; y++){
 					for (size_t z = 0; z < layers; z++)
 					{
-						//Saves Level Info to a Text File
-						saveFile << x << " " << y << " " << z << " " << map.at(x).at(y).at(z)->ToString() << "\n";
+						if (this->map[x][y][z] != nullptr)
+						{
+							//Saves Level Info to a Text File
+							saveFile << x << " " << y << " " << z << " " << map.at(x).at(y).at(z)->ToString() << "\n";
+						}
 					}
 				}
 			}

@@ -29,8 +29,8 @@ void Engine::Start(sf::RenderWindow* window)
 	this->window = window;
 
 	mainCamera = new MainCamera(sf::Vector2f(
-		static_cast<float>(window->getSize().x / 2), 
-		static_cast<float>(window->getSize().y / 2)));
+		static_cast<uint32_t>(window->getSize().x / 2), 
+		static_cast<uint32_t>(window->getSize().y / 2)));
 	pauseMenu = new PauseMenu(window);
 
 	//Run the program as long as the window is open
