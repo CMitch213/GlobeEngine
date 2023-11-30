@@ -22,6 +22,14 @@ bool PhysicsSystem::IsColliding(ECS::ComponentHandle<BoxCollider> touchingEntity
         && touchedRectBottom > touchingEntity->topEdge + y;
 }
 
+bool PhysicsSystem::IsColliding(ECS::ComponentHandle<BoxCollider> touchingEntity,
+    ECS::ComponentHandle<RectangleCollider> touchedRectangle, float x, float y) {
+    return touchingEntity->rightEdge + x > touchedRectangle->left &&
+        touchedRectangle->right > touchingEntity->leftEdge + x &&
+        touchingEntity->bottomEdge + y > touchedRectangle->top &&
+        touchedRectangle->bottom > touchingEntity->topEdge + y;
+}
+
 bool PhysicsSystem::IsColliding(ECS::ComponentHandle<BoxCollider> touchingEntity, ECS::ComponentHandle<BoxCollider> touchedEntity)
 {
     return touchingEntity->rightEdge > touchedEntity->leftEdge
@@ -113,6 +121,45 @@ void PhysicsSystem::CheckCollisionSides(ECS::ComponentHandle<Transform> transfor
     }
 }
 
+void PhysicsSystem::CheckCollisionSides(ECS::ComponentHandle<Transform> transform, ECS::ComponentHandle<BoxCollider> touchingEntity, ECS::ComponentHandle<RectangleCollider> touchedRectangle)
+{
+    //Scenario dealing with collision from the right side by accelerating right-ward
+    if (transform->xSpeed > 0 &&
+        touchedRectangle->right + transform->xSpeed > touchedRectangle->left &&
+        touchingEntity->topEdge < touchedRectangle->bottom &&
+        touchingEntity->bottomEdge > touchedRectangle->top
+        ) {
+        transform->xSpeed = 0;
+    }
+
+    //Scenario dealing with collision from the bottom side by accelerating down-ward
+    if (transform->ySpeed > 0 &&
+        touchedRectangle->bottom + transform->ySpeed > touchedRectangle->top &&
+        touchingEntity->leftEdge < touchedRectangle->right &&
+        touchingEntity->rightEdge > touchedRectangle->left
+        ) {
+        transform->ySpeed = 0;
+    }
+
+    //Scenario dealing with collision from the left side by accelerating left-ward
+    if (transform->xSpeed < 0 &&
+        touchedRectangle->left + transform->xSpeed > touchedRectangle->right &&
+        touchingEntity->topEdge < touchedRectangle->bottom &&
+        touchingEntity->bottomEdge > touchedRectangle->top
+        ) {
+        transform->xSpeed = 0;
+    }
+
+    //Scenario dealing with collision from the top side by accelerating up-ward
+    if (transform->ySpeed < 0 &&
+        touchedRectangle->top + transform->ySpeed > touchedRectangle->bottom &&
+        touchingEntity->leftEdge < touchedRectangle->right &&
+        touchingEntity->rightEdge > touchedRectangle->left
+        ) {
+        transform->ySpeed = 0;
+    }
+}
+
 void PhysicsSystem::CheckCollisionSides(ECS::Entity* touchingEntity, ECS::Entity* touchedEntity)
 {
     const float newTouchingX = touchingEntity->get<Transform>()->xPos;
@@ -170,6 +217,26 @@ void PhysicsSystem::tick(ECS::World* world, float deltaTime)
 
                     });
             });
+
+        world->each<BoxCollider>(
+            [&](ECS::Entity* touchingEntity,
+                ECS::ComponentHandle<BoxCollider> touchingBox)->void
+            {
+
+                world->each<Transform, RectangleCollider>(
+                    [&](ECS::Entity* touchedEntity,
+                        ECS::ComponentHandle<Transform> transform,
+                        ECS::ComponentHandle<RectangleCollider> touchedRectangle)
+                    {
+                        //Statement to avoid comparing the same entity to itself
+                        if (touchingEntity->getEntityId() == touchedEntity->getEntityId() || this->IsColliding(touchingBox, touchedRectangle, transform->xPos, transform->yPos) == false) {
+                            return;
+                        }
+                        //Final Collision Check
+                        this->CheckCollisionSides(transform, touchingBox, touchedRectangle);
+                    });  
+            });
+        
 
         world->each<Transform>(
             [&](ECS::Entity*,

@@ -104,6 +104,37 @@ public:
 };
 ECS_DEFINE_TYPE(BoxCollider);
 
+struct RectangleCollider {
+
+public:
+	ECS_DECLARE_TYPE;
+	sf::RectangleShape shape;
+	float left;
+	float right;
+	float top;
+	float bottom;
+	float gridSizeF;
+
+	RectangleCollider() 
+		: left(0.0f), right(0.0f), top(0.0f), bottom(0.0f), gridSizeF(50.0f)
+	{
+		shape.setSize(sf::Vector2f(gridSizeF, gridSizeF));
+		shape.setPosition(left * gridSizeF, top * gridSizeF);
+
+		//Uncomment to see hitbox
+		//shape.setFillColor(sf::Color::Cyan);
+	}
+
+	void Update(float x, float y, const float gridSizeF) {
+		this->left = x;
+		this->right = x + gridSizeF;
+		this->top = y;
+		this->bottom = y + gridSizeF;
+		this->gridSizeF = gridSizeF;
+	}
+};
+ECS_DEFINE_TYPE(RectangleCollider);
+
 struct TileMap {
 
 public:
@@ -245,3 +276,21 @@ public:
 	}
 };
 ECS_DEFINE_TYPE(TileMap);
+
+struct Tag {
+	ECS_DECLARE_TYPE;
+
+public:
+	std::vector<std::string> tagNames;
+	Tag() = default;
+	~Tag() = default;
+
+	void AddTag(const std::string& tag) {
+		tagNames.emplace_back(tag); /*Adds to array*/
+	}
+
+	bool ContainsTag(const std::string& tag) {
+		return std::find(tagNames.begin(), tagNames.end(), tag) != tagNames.end();
+	}
+}
+ECS_DEFINE_TYPE(Tag);

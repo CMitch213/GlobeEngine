@@ -35,12 +35,17 @@ int main() {
 	background->assign<Transform>(0, 0);
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
 	background->assign<TileMap>();
+
 	soldier->assign<Transform>(50, 50, 0.03f, 0.03f, 0.0f, 0.1f);
 	soldier->assign<Sprite2D>("../Debug/Pics/Soldier.png");
 	soldier->assign<Animator>(64, 64, 1, 1, 3000.0f);
 	soldier->get<Animator>()->currentRow = 0;
+	soldier->assign<Tag>();
+	soldier->get<Tag>()->AddTag("Player");
 	soldier->assign<InputController>();
 	soldier->assign<BoxCollider>();
+	soldier->assign<RectangleCollider>();
+
 	stickFigure->assign<Transform>(100, 100);
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 4, 1, 2000.0f);
