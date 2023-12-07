@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Packages\SFML-2.5.1\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Packages\SFML-2.5.1\include;$(SolutionDir)gameEngine_Cooper;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)gameEngine_Cooper\lib;$(SolutionDir)Packages\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -142,7 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entities\Entity.cpp" />
+    <ClCompile Include="Entities\Player.cpp" />
+    <ClCompile Include="Entities\Soldier.cpp" />
     <ClCompile Include="GameMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Entities\Entity.h" />
+    <ClInclude Include="Entities\Player.h" />
+    <ClInclude Include="Entities\Soldier.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
