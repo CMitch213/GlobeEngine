@@ -4,6 +4,7 @@
 #include "../gameEngine_Cooper/Systems/MovementSystem.h"
 #include "Entities/Player.h"
 
+
 int main() {
 
 	//Declare & get instance of singleton
@@ -37,7 +38,7 @@ int main() {
 	background->assign<TileMap>();
 
 	//Create Player
-	Player* player = new Player(sf::Vector2f(50.0f, 50.0f));
+	const Player* player = new Player(gameEngine.world, 2, sf::Vector2f(50.0f, 50.0f));
 
 	stickFigure->assign<Transform>(100, 100);
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
@@ -46,7 +47,7 @@ int main() {
 
 	//Check Which Entity They Are
 	std::cout << "EntityID: " << background->getEntityId() << std::endl;
-	//std::cout << "EntityID: " << player->getEntityId() << std::endl;
+	std::cout << "EntityID: " << player->getEntityId() << std::endl;
 	std::cout << "EntityID: " << stickFigure->getEntityId() << std::endl;
 
 	////Create and assign 250 enitities to the world

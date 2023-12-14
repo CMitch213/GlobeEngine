@@ -76,9 +76,10 @@ struct InputController {
 
 public:
 	ECS_DECLARE_TYPE;
-	bool bInputActive, wKey, aKey, sKey, dKey;
+	bool bInputActive, wKey, aKey, sKey, dKey, spaceKey;
 
-	InputController() : bInputActive(true), wKey(false), aKey(false), sKey(false), dKey(false) {
+	InputController() : bInputActive(true),
+		wKey(false), aKey(false), sKey(false), dKey(false), spaceKey(false) {
 
 	}
 

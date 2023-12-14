@@ -16,13 +16,16 @@
     <Filter Include="Entities">
       <UniqueIdentifier>{d19f59b5-56cc-4906-bbbd-20b04cb29864}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{63fea8b8-ed9e-4178-8325-ad69cf1c143b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{d590d651-ae9d-4763-81d2-d574e9e9feee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entities\Entity.cpp">
-      <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Entities\Soldier.cpp">
       <Filter>Entities</Filter>
@@ -30,16 +33,28 @@
     <ClCompile Include="Entities\Player.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Projectile.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMovementSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entities\Entity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Entities\Soldier.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Entities\Player.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Projectile.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\GameComponents.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMovementSystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

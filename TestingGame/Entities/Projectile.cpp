@@ -1,0 +1,21 @@
+#include "Projectile.h"
+
+Projectile::Projectile(ECS::World* world, const size_t id, Soldier& shooter, const std::string picturePath, sf::Vector2f position, float angle, float speed) :
+	ECS::Entity(world, id)
+{
+	Engine& engine = Engine::GetInstance();
+	engine.world = world;
+	this->id = id;
+
+	this->entity = engine.world->create();
+	this->entity->assign<Sprite2D>(picturePath);
+	this->entity->assign<Tag>();
+	this->entity->get<Tag>()->AddTag("Projectile");
+	this->entity->assign<Transform>(position.x, position.y, speed, speed, angle, speed);
+}
+
+Projectile::~Projectile()
+{
+	Engine& engine = Engine::GetInstance();
+	engine.world->destroy(this->entity);
+}

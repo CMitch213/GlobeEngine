@@ -142,15 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Entities\Entity.cpp" />
     <ClCompile Include="Entities\Player.cpp" />
+    <ClCompile Include="Entities\Projectile.cpp" />
     <ClCompile Include="Entities\Soldier.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="GameMovementSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entities\Entity.h" />
+    <ClInclude Include="Components\GameComponents.h" />
     <ClInclude Include="Entities\Player.h" />
+    <ClInclude Include="Entities\Projectile.h" />
     <ClInclude Include="Entities\Soldier.h" />
+    <ClInclude Include="GameMovementSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
