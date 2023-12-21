@@ -2,6 +2,7 @@
 #include "../gameEngine_Cooper/Core/Engine.h"
 #include "../gameEngine_Cooper/Systems/InputSystem.h"
 #include "../gameEngine_Cooper/Systems/MovementSystem.h"
+#include "../TestingGame/GameMovementSystem.h"
 #include "Entities/Player.h"
 
 
@@ -24,7 +25,8 @@ int main() {
 	gameEngine.AddSystem(new RenderingSystem());
 	gameEngine.AddSystem(new AnimationsSystem());
 	gameEngine.AddSystem(new InputSystem(&window));
-	gameEngine.AddSystem(new MovementSystem());
+	//gameEngine.AddSystem(new MovementSystem());
+	gameEngine.AddSystem(new GameMovementSystem());
 	gameEngine.AddSystem(new PhysicsSystem());
 	gameEngine.AddSystem(new TileMapSystem());
 

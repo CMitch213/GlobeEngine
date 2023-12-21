@@ -72,6 +72,12 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 							}
 						}
 					}
+					else if (tag->ContainsTag("Projectile")) {
+						transform->xSpeed = sin((transform->rotationAngle + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->xSpeedMod;
+						transform->ySpeed = -cos((transform->rotationAngle + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->ySpeedMod;
+
+						transform->Move();
+					}
 			});
 	}
 }

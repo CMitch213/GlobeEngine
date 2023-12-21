@@ -9,7 +9,7 @@ protected:
 
 public:
 	Projectile() = default;
-	Projectile(ECS::World* world, const size_t id, Soldier& shooter, const std::string picturePath, sf::Vector2f position, float angle, float speed);
+	Projectile(ECS::World* world, const size_t id, /*Soldier& shooter, const std::string picturePath, */ sf::Vector2f position, float angle, float speed);
 	~Projectile();
 };
 

@@ -19,6 +19,6 @@ public:
 	~Soldier() = default;
 
 private:
-	void Fire(ECS::Entity* entity);
+	static void Fire(ECS::Entity* entity);
 };
 
