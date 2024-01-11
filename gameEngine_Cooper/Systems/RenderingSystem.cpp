@@ -27,7 +27,7 @@ void RenderingSystem::tick(ECS::World* world, float deltaTime)
 				}
 
 				//Update and draw to the screen
-				sprite->picture.setPosition(transform->xPos, transform->yPos);
+				sprite->picture.setPosition(transform->position.x, transform->position.y);
 				Engine::GetInstance().window->draw(sprite->picture);
 			});
 

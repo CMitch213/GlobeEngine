@@ -9,31 +9,33 @@ struct Transform
 
 public:
 	ECS_DECLARE_TYPE;
-	float xPos, yPos;
-	float rotationAngle;
-	float rotationSpeed;
-	float xSpeed, ySpeed;
-	float xSpeedMod, ySpeedMod;
 
+	sf::Vector2f position;
+	sf::Vector2f speed;
+	float rotationAngle, rotationSpeed;
 	bool bCollide;
 
-	Transform(float newX, float newY, float xSpeed = 0.0f, float ySpeed = 0.0f, float rotationAngle = 0.0f, float rotationSpeed = 0.0f): 
-		xPos(newX), yPos(newY), 
-		xSpeed(xSpeed), ySpeed(ySpeed),
-		xSpeedMod(xSpeed), ySpeedMod(ySpeed),
+	Transform(sf::Vector2f position, sf::Vector2f speed, float rotationAngle = 0.0f, float rotationSpeed = 0.0f) :
+		position(position.x, position.y),
+		speed(speed.x, speed.y),
 		rotationAngle(rotationAngle), rotationSpeed(rotationSpeed),
-		bCollide(false){
-		//Start of constructor
+		bCollide(false)
+	{}
 
-	}
-
-	void Move(){
+	void Move()
+	{
 		if (bCollide == false)
 		{
-			this->xPos += xSpeed;
-			this->yPos += ySpeed;
+			this->position += this->speed;
 		}
 	}
+	/*
+	* void Normalize() {
+		this->xSpeed /= this->length;
+		this->ySpeed /= this->length;
+	}
+	*/
+	
 };
 ECS_DEFINE_TYPE(Transform);
 

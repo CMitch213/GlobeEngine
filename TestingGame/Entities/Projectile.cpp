@@ -11,7 +11,7 @@ Projectile::Projectile(ECS::World* world, const size_t id, /*Soldier& shooter, c
 	this->entity->assign<Sprite2D>("../Debug/Pics/Projectile.png");
 	this->entity->assign<Tag>();
 	this->entity->get<Tag>()->AddTag("Projectile");
-	this->entity->assign<Transform>(position.x, position.y, speed, speed, angle, speed);
+	this->entity->assign<Transform>(sf::Vector2f(position.x, position.y), sf::Vector2f(speed, speed), angle, speed);
 }
 
 Projectile::~Projectile()

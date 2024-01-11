@@ -14,70 +14,72 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 				ECS::ComponentHandle<Transform> transform,
 				ECS::ComponentHandle<Sprite2D> sprite,
 				ECS::ComponentHandle<Tag> tag
-				) -> void {
-					//Centre anchorpoint to sprite
-					// comment if using spritesheet to set anchor point to centre
-					sprite->picture.setOrigin(sf::Vector2f(sprite->width / 2, sprite->height / 2));
+				) -> void
+			{
+				// Center anchor point to sprite
+				sprite->picture.setOrigin(sf::Vector2f(sprite->width / 2, sprite->height / 2));
 
-					ECS::ComponentHandle<InputController> input = entity->get<InputController>();
-					input = entity->get<InputController>();
+				const ECS::ComponentHandle<InputController> input = entity->get<InputController>();
 
-					//Set to name of tag of your player character
-					if (tag->ContainsTag("Player"))
+				if (tag->ContainsTag("Player") == true)
+				{
+					if (input->bInputActive == true)
 					{
-						if (input->bInputActive == true) {
-							//get w key input
-							if (input->wKey == true)
+						if (input->wKey == true)
+						{
+							transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
+							transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
+
+							transform->Move();
+
+							std::cout << "X Speed    : " << transform->speed.x << std::endl;
+							std::cout << "Y Speed    : " << transform->speed.y << std::endl;
+						}
+						else if (input->sKey == true)
+						{
+							transform->speed.x = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
+							transform->speed.y = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
+
+							transform->Move();
+						}
+						else
+						{
+							transform->speed.x = 0.0f;
+							transform->speed.y = 0.0f;
+						}
+
+						if (input->aKey == true)
+						{
+							sprite->picture.rotate(-transform->rotationSpeed);
+						}
+						else if (input->dKey == true)
+						{
+							sprite->picture.rotate(transform->rotationSpeed);
+						}
+
+						if (input->spaceKey == true)
+						{
+							const ECS::ComponentHandle<Shooter> shooter = entity->get<Shooter>();
+
+							if (shooter->timeSinceLastShot > shooter->fireDelay)
 							{
-								transform->xSpeed = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->xSpeedMod;
-								transform->ySpeed = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->ySpeedMod;
-
-								transform->Move();
+								entity->get<CallbackEntity>().get()(entity);
+								shooter->timeSinceLastShot = 0.0f;
 							}
-							//get s key input
-							else if (input->sKey == true)
+							else
 							{
-								transform->xSpeed = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->xSpeedMod;
-								transform->ySpeed = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->ySpeedMod;
-
-								transform->Move();
-							}
-							//Reset momentum
-							else {
-								transform->xSpeed = 0.0f;
-								transform->ySpeed = 0.0f;
-							}
-
-							//get a key input
-							if (input->aKey) {
-								sprite->picture.rotate(-transform->rotationSpeed);
-							}
-							//get d key input
-							else if (input->dKey) {
-								sprite->picture.rotate(transform->rotationSpeed);
-							}
-
-							if (input->spaceKey) {
-								ECS::ComponentHandle<Shooter> shooter = entity->get<Shooter>();
-
-								if (shooter->timeSinceLastShot >= shooter->fireDelay) {
-									entity->get<CallbackEntity>().get()(entity);
-									shooter->timeSinceLastShot = 0.0f;
-								}
-								else
-								{
-									shooter->timeSinceLastShot += deltaTime;
-								}
-
+								shooter->timeSinceLastShot += deltaTime;
 							}
 						}
 					}
-					else if (tag->ContainsTag("Projectile")) {
-						transform->xSpeed = sin((transform->rotationAngle + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->xSpeedMod;
-						transform->ySpeed = -cos((transform->rotationAngle + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->ySpeedMod;
+				}
+				else if (tag->ContainsTag("Projectile") == true)
+				{
+					transform->speed.x = sin((transform->rotationAngle + 90.0f) / 180.0f * static_cast<float>(M_PI))/* * transform->xSpeedMod*/;
+					transform->speed.y = -cos((transform->rotationAngle + 90.0f) / 180.0f * static_cast<float>(M_PI))/* * transform->ySpeedMod*/;
 
-						transform->Move();
-					}
+					transform->Move();
+				}
 			});
 	}
 }

@@ -16,7 +16,7 @@ Soldier::Soldier(ECS::World* world, const size_t id, const std::string picturePa
 	entity->assign<Sprite2D>(picturePath);
 	entity->assign<BoxCollider>();
 	entity->assign<Tag>();
-	entity->assign<Transform>(position.x, position.y, 0.03f, 0.03f, 0.0f, 0.05f);
+	entity->assign<Transform>(sf::Vector2f(position.x, position.y), sf::Vector2f(0.003f, 0.003f), 0.0f, 0.05f);
 	entity->assign<Shooter>();
 	entity->get<Shooter>()->fireDelay = 500.0f;
 	entity->assign<std::vector<Projectile*>>(std::vector<Projectile*>());
@@ -42,10 +42,10 @@ void Soldier::Fire(ECS::Entity* entity)
 	const Engine& engine = Engine::GetInstance();
 	const size_t id = entity->getEntityId();
 
-	const float thrust = std::fabs((entity->get<Transform>()->xSpeed * 3.0f) + (entity->get<Transform>()->ySpeed * 3.0f)) / 2.0f + 0.1f;
+	const float thrust = std::fabs((entity->get<Transform>()->speed.x * 3.0f) + (entity->get<Transform>()->speed.y * 3.0f)) / 2.0f + 0.1f;
 
 	//Create projectiles upon firing start from first
-	const auto firedProjectile = new Projectile(engine.world, id, sf::Vector2f(transform->xPos, transform->yPos),
+	const auto firedProjectile = new Projectile(engine.world, id, sf::Vector2f(transform->position.x, transform->position.y),
 		sprite->picture.getRotation()/* - 90.0f*/, thrust);
 
 	//Remove projectile from list

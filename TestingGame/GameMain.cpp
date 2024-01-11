@@ -1,7 +1,7 @@
 #include "sfml/graphics.hpp"
 #include "../gameEngine_Cooper/Core/Engine.h"
 #include "../gameEngine_Cooper/Systems/InputSystem.h"
-#include "../gameEngine_Cooper/Systems/MovementSystem.h"
+#include "GameMovementSystem.h"
 #include "../TestingGame/GameMovementSystem.h"
 #include "Entities/Player.h"
 
@@ -35,14 +35,14 @@ int main() {
 	stickFigure = gameEngine.world->create();
 
 	//Assign Componets to Entities
-	background->assign<Transform>(0, 0);
+	background->assign<Transform>(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(0.0f, 0.0f));
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
 	background->assign<TileMap>();
 
 	//Create Player
 	const Player* player = new Player(gameEngine.world, 2, sf::Vector2f(50.0f, 50.0f));
 
-	stickFigure->assign<Transform>(100, 100);
+	stickFigure->assign<Transform>(sf::Vector2f(100.0f, 100.0f), sf::Vector2f(0.0f, 0.0f));
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 4, 1, 2000.0f);
 	stickFigure->assign<BoxCollider>();
