@@ -3,6 +3,8 @@
 class GameMovementSystem : public ECS::EntitySystem
 {
 public:
+	float timer{ 0.0f };
+	
 	GameMovementSystem() = default;
 	~GameMovementSystem() = default;
 

@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entities\Enemy.cpp" />
     <ClCompile Include="Entities\Player.cpp" />
     <ClCompile Include="Entities\Projectile.cpp" />
     <ClCompile Include="Entities\Soldier.cpp" />
@@ -150,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\GameComponents.h" />
+    <ClInclude Include="Entities\Enemy.h" />
     <ClInclude Include="Entities\Player.h" />
     <ClInclude Include="Entities\Projectile.h" />
     <ClInclude Include="Entities\Soldier.h" />

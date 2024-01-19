@@ -4,6 +4,7 @@
 #include "GameMovementSystem.h"
 #include "../TestingGame/GameMovementSystem.h"
 #include "Entities/Player.h"
+#include "Entities/Enemy.h"
 
 
 int main() {
@@ -38,19 +39,25 @@ int main() {
 	background->assign<Transform>(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(0.0f, 0.0f));
 	background->assign<Sprite2D>("../Debug/Pics/bg.jpg");
 	background->assign<TileMap>();
+	background->assign<Tag>();
+	background->get<Tag>()->AddTag("Background");
 
 	//Create Player
-	const Player* player = new Player(gameEngine.world, 2, sf::Vector2f(50.0f, 50.0f));
+	const Player* player = new Player(gameEngine.world, 3, sf::Vector2f(50.0f, 50.0f));
+	const auto enemy1 = new Enemy(gameEngine.world, 4, sf::Vector2f(150.0f, 150.0f));
 
 	stickFigure->assign<Transform>(sf::Vector2f(100.0f, 100.0f), sf::Vector2f(0.0f, 0.0f));
 	stickFigure->assign<Sprite2D>("../Debug/Pics/herosheet.png");
 	stickFigure->assign<Animator>(32, 32, 4, 1, 2000.0f);
 	stickFigure->assign<BoxCollider>();
+	stickFigure->assign<Tag>();
+	stickFigure->get<Tag>()->AddTag("Stick-Figure");
 
 	//Check Which Entity They Are
 	std::cout << "EntityID: " << background->getEntityId() << std::endl;
-	std::cout << "EntityID: " << player->getEntityId() << std::endl;
 	std::cout << "EntityID: " << stickFigure->getEntityId() << std::endl;
+	std::cout << "EntityID: " << player->getEntityId() << std::endl;
+	std::cout << "EntityID: " << enemy1->getEntityId() << std::endl;
 
 	////Create and assign 250 enitities to the world
 	//for (int x = 0; x < 25; x++) {

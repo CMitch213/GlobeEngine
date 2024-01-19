@@ -8,4 +8,5 @@ Player::Player(ECS::World* world, const size_t id, sf::Vector2f position) :
 
 	entity->assign<InputController>();
 	entity->get<Tag>()->AddTag("Player");
+	entity->get<Transform>()->Normalize(sf::Vector2f(0.005f, 0.005f));
 }

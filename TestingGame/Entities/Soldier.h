@@ -12,6 +12,7 @@ protected:
 	size_t id;
 	ECS::Entity* entity {nullptr};
 	Projectile* projectile{ nullptr };
+	sf::Vector2f speed;
 
 public:
 	Soldier() = default;

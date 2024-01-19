@@ -6,7 +6,9 @@
 #include "Components/GameComponents.h"
 
 void GameMovementSystem::tick(ECS::World* world, float deltaTime)
-{
+{	
+	this->timer += deltaTime;
+
 	if (States::GetPausedState() == false)
 	{
 		world->each<Transform, Sprite2D, Tag>(
@@ -27,8 +29,8 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 					{
 						if (input->wKey == true)
 						{
-							transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
-							transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
+							transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+							transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
 
 							transform->Move();
 
@@ -37,8 +39,8 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 						}
 						else if (input->sKey == true)
 						{
-							transform->speed.x = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
-							transform->speed.y = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI));
+							transform->speed.x = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+							transform->speed.y = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
 
 							transform->Move();
 						}
@@ -50,11 +52,11 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 
 						if (input->aKey == true)
 						{
-							sprite->picture.rotate(-transform->rotationSpeed);
+							sprite->picture.rotate(-transform->rotationSpeed * 2);
 						}
 						else if (input->dKey == true)
 						{
-							sprite->picture.rotate(transform->rotationSpeed);
+							sprite->picture.rotate(transform->rotationSpeed * 2);
 						}
 
 						if (input->spaceKey == true)
@@ -72,6 +74,22 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 							}
 						}
 					}
+				}
+				else if (tag->ContainsTag("Enemy")) 
+				{
+					transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+					transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+
+					transform->Move();
+
+					//Random Rotation
+					if (this->timer > 10000.0f) {
+						int random = std::rand() % 360 + 1;
+						sprite->picture.setRotation(random + 90.0f);
+
+						this->timer = 0.0f;
+					}
+
 				}
 				else if (tag->ContainsTag("Projectile") == true)
 				{

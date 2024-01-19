@@ -39,6 +39,9 @@
     <ClCompile Include="GameMovementSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Entities\Enemy.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entities\Soldier.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="GameMovementSystem.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\Enemy.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

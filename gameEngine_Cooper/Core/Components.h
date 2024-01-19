@@ -29,12 +29,13 @@ public:
 			this->position += this->speed;
 		}
 	}
-	/*
-	* void Normalize() {
-		this->xSpeed /= this->length;
-		this->ySpeed /= this->length;
+	
+	void Normalize(const sf::Vector2f speed) {
+		const auto magnitude = static_cast<float>(sqrt(speed.x * speed.x + speed.y * speed.y));
+
+		this->speed.x = speed.x / magnitude;
+		this->speed.y = speed.y / magnitude;
 	}
-	*/
 	
 };
 ECS_DEFINE_TYPE(Transform);
@@ -202,13 +203,18 @@ public:
 
 	void AddTile(const int32_t x, const int32_t y, const int32_t z, bool bHasCollision) {
 		//Make sure tiles are being placed on the grid
-		if (x >= 0 && y >= 0 && z >= 0) 
+		if (x < this->maxSize.x && x >= 0u &&
+			y < this->maxSize.y && y >= 0u &&
+			z < this->layers && z >= 0u)
 		{
-			//Check if a tile is not already in use	
-			if (map.at(x).at(y).at(z) == nullptr) {
-				//Create A Tile
-				map.at(x).at(y).at(z) = new Tile(static_cast<float>(x), static_cast<float>(y), gridSizeF, bHasCollision);
-				std::cout << "Added Tile" << std::endl;
+			if (x >= 0 && y >= 0 && z >= 0)
+			{
+				//Check if a tile is not already in use	
+				if (map.at(x).at(y).at(z) == nullptr) {
+					//Create A Tile
+					map.at(x).at(y).at(z) = new Tile(static_cast<float>(x), static_cast<float>(y), gridSizeF, bHasCollision);
+					std::cout << "Added Tile" << std::endl;
+				}
 			}
 		}
 	}
