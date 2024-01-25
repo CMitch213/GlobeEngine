@@ -12,12 +12,14 @@ public:
 
 	sf::Vector2f position;
 	sf::Vector2f speed;
+	float speedMod;
 	float rotationAngle, rotationSpeed;
 	bool bCollide;
 
-	Transform(sf::Vector2f position, sf::Vector2f speed, float rotationAngle = 0.0f, float rotationSpeed = 0.0f) :
+	Transform(sf::Vector2f position, sf::Vector2f speed, float speedMod = 0.0f, float rotationAngle = 0.0f, float rotationSpeed = 0.0f) :
 		position(position.x, position.y),
 		speed(speed.x, speed.y),
+		speedMod(speedMod),
 		rotationAngle(rotationAngle), rotationSpeed(rotationSpeed),
 		bCollide(false)
 	{}
@@ -26,15 +28,14 @@ public:
 	{
 		if (bCollide == false)
 		{
-			this->position += this->speed;
+			this->position += this->speed * speedMod;
 		}
 	}
 	
 	void Normalize(const sf::Vector2f speed) {
 		const auto magnitude = static_cast<float>(sqrt(speed.x * speed.x + speed.y * speed.y));
 
-		this->speed.x = speed.x / magnitude;
-		this->speed.y = speed.y / magnitude;
+		this->speed += speed / magnitude;
 	}
 	
 };

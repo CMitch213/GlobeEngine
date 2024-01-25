@@ -29,9 +29,10 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 					{
 						if (input->wKey == true)
 						{
-							transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
-							transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+							transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->speedMod;
+							transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->speedMod;
 
+							transform->Normalize(transform->speed);
 							transform->Move();
 
 							std::cout << "X Speed    : " << transform->speed.x << std::endl;
@@ -39,9 +40,10 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 						}
 						else if (input->sKey == true)
 						{
-							transform->speed.x = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
-							transform->speed.y = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+							transform->speed.x = -sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->speedMod;
+							transform->speed.y = cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->speedMod;
 
+							transform->Normalize(transform->speed);
 							transform->Move();
 						}
 						else
@@ -77,9 +79,10 @@ void GameMovementSystem::tick(ECS::World* world, float deltaTime)
 				}
 				else if (tag->ContainsTag("Enemy")) 
 				{
-					transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
-					transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * 0.1f;
+					transform->speed.x = sin((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->speedMod;
+					transform->speed.y = -cos((sprite->picture.getRotation() + 90.0f) / 180.0f * static_cast<float>(M_PI)) * transform->speedMod;
 
+					transform->Normalize(transform->speed);
 					transform->Move();
 
 					//Random Rotation

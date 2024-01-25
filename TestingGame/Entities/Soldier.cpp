@@ -16,7 +16,7 @@ Soldier::Soldier(ECS::World* world, const size_t id, const std::string picturePa
 	entity->assign<Sprite2D>(picturePath);
 	entity->assign<BoxCollider>();
 	entity->assign<Tag>();
-	entity->assign<Transform>(sf::Vector2f(position.x, position.y), sf::Vector2f(speed.x, speed.y), 0.0f, 0.05f);
+	entity->assign<Transform>(sf::Vector2f(position.x, position.y), sf::Vector2f(speed.x, speed.y), 0.1f, 0.0f, 0.05f);
 	entity->assign<Shooter>();
 	entity->get<Shooter>()->fireDelay = 500.0f;
 	entity->assign<std::vector<Projectile*>>(std::vector<Projectile*>());
